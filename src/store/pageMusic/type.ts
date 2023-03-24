@@ -12,5 +12,9 @@ export interface MusicType {
   Collectorslist: any[]
   musicCurrent: number
   doubleIndex: number
+  sequence: number
   Lyreic: any[]
+  showPlay: boolean
+  lyreicIndex: number
+  currentLyreic: string
 }

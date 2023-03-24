@@ -177,8 +177,9 @@ export default defineComponent({
 
     // 播放全部
     const playAll = (list: any[]) => {
+      console.log(list, '播放全部')
+
       store.dispatch('pageMusic/albumcurrentmusic', list)
-      console.log('播放全部')
       const indexaa = store.state.pageMusic.mp3s.length - 1
 
       store.dispatch('pageMusic/setIndex', indexaa)

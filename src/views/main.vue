@@ -43,6 +43,9 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+.el-main {
+  --el-main-padding: 10px !important;
+}
 .conraoner {
   width: 100%;
   overflow: hidden;
@@ -61,9 +64,9 @@ export default defineComponent({
     width: 100%;
     z-index: 999;
     bottom: 0/1920 * 100vw;
-    height: 130/1920 * 100vw;
+    height: 100/1920 * 100vw;
     box-shadow: -1px 0 2px 0px rgba(100, 100, 100, 0.5);
-    background-color: #eee;
+    background-color: #fff;
   }
 }
 </style>
@@ -84,7 +87,7 @@ export default defineComponent({
       background-color: #ccc;
     }
     .mains {
-      padding-top: 0 100/600 * 100px 0 !important;
+      padding: 0 100/600 * 100px 0 !important;
     }
     .footer {
       position: fixed;

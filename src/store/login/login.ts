@@ -42,6 +42,7 @@ const login: Module<LoginType, IDtype> = {
     async getLogins({ commit, dispatch }, play: Logins) {
       const { phone, password } = play
       // 登录
+      console.log(phone, password)
       const a = await getLogin(phone, password)
       const { token, profile, cookie } = a
       console.log(a, '登录数据')

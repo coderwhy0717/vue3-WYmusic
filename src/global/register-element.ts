@@ -48,8 +48,10 @@ import {
   ElDrawer,
   ElTag,
   ElFooter,
-  ElBacktop
+  ElBacktop,
+  ElSlider
 } from 'element-plus'
+
 import {
   Edit,
   ArrowLeftBold,
@@ -125,7 +127,7 @@ const components = [
   ChatLineRound,
   CaretTop,
   ElBacktop,
-
+  ElSlider,
   // -------
   Edit,
   ArrowLeftBold,

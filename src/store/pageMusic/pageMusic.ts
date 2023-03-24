@@ -31,15 +31,708 @@ const pageMusic: Module<MusicType, IDtype> = {
     // 展示播放列表数据
     mp3slist: [],
     //播放列表-- // 获取用户播放排行榜
-    mp3s: [],
+    mp3s: [
+      {
+        name: '温暖阳光洒落在你的窗前',
+        id: 1484537845,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 34637050,
+            name: 'Colo',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 100,
+        st: 0,
+        rt: '',
+        fee: 8,
+        v: 31,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 96342883,
+          name: 'Sunny',
+          picUrl:
+            'https://p2.music.126.net/oPoqXeUmCm65zml1r55KBA==/109951165364992849.jpg',
+          tns: [],
+          pic_str: '109951165364992849',
+          pic: 109951165364992850
+        },
+        dt: 197394,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 7897965,
+          vd: -8648,
+          sr: 48000
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 4738797,
+          vd: -6005,
+          sr: 48000
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 3159213,
+          vd: -4230,
+          sr: 48000
+        },
+        sq: {
+          br: 1460178,
+          fid: 0,
+          size: 36028884,
+          vd: -8649,
+          sr: 48000
+        },
+        hr: null,
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 131136,
+        originCoverType: 0,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 31,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        rtype: 0,
+        rurl: null,
+        mst: 9,
+        cp: 0,
+        mv: 0,
+        publishTime: 0
+      },
+      {
+        name: '消逝的光芒③',
+        id: 1924933964,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 50040107,
+            name: '你还在失望吧',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 20,
+        st: 0,
+        rt: '',
+        fee: 8,
+        v: 4,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 138597273,
+          name: '心之所向',
+          picUrl:
+            'https://p2.music.126.net/7XiJq32IPOT4PJrEDeYNxQ==/109951166912155812.jpg',
+          tns: [],
+          pic_str: '109951166912155812',
+          pic: 109951166912155800
+        },
+        dt: 101520,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 4061805,
+          vd: -30195,
+          sr: 48000
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 2437101,
+          vd: -27587,
+          sr: 48000
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 1624749,
+          vd: -25951,
+          sr: 48000
+        },
+        sq: null,
+        hr: null,
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 131072,
+        originCoverType: 0,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 4,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        mv: 0,
+        rtype: 0,
+        rurl: null,
+        mst: 9,
+        cp: 0,
+        publishTime: 0
+      },
+      {
+        name: '无仙',
+        id: 556673324,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 1084178,
+            name: 'Candy_Wind',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 100,
+        st: 0,
+        rt: null,
+        fee: 8,
+        v: 31,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 38522403,
+          name: '无仙',
+          picUrl:
+            'https://p2.music.126.net/u_l-DllJXI5NzSzpsJ_nVA==/109951163275176799.jpg',
+          tns: [],
+          pic_str: '109951163275176799',
+          pic: 109951163275176800
+        },
+        dt: 135959,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 5440827,
+          vd: -12520,
+          sr: 44100
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 3264514,
+          vd: -12520,
+          sr: 44100
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 2176357,
+          vd: -12520,
+          sr: 44100
+        },
+        sq: {
+          br: 788269,
+          fid: 0,
+          size: 13396615,
+          vd: -12520,
+          sr: 44100
+        },
+        hr: null,
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 393216,
+        originCoverType: 0,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 31,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        mst: 9,
+        cp: 0,
+        mv: 0,
+        rurl: null,
+        rtype: 0,
+        publishTime: 1525017600000
+      },
+      {
+        name: 'So Far Away',
+        id: 521416693,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 780003,
+            name: 'Martin Garrix',
+            tns: [],
+            alias: []
+          },
+          {
+            id: 31211,
+            name: 'David Guetta',
+            tns: [],
+            alias: []
+          },
+          {
+            id: 141813,
+            name: 'Jamie Scott',
+            tns: [],
+            alias: []
+          },
+          {
+            id: 12900365,
+            name: 'Romy Dya',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 100,
+        st: 0,
+        rt: null,
+        fee: 8,
+        v: 47,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 36873174,
+          name: 'So Far Away',
+          picUrl:
+            'https://p2.music.126.net/bDdwz0zd-BGYpel1QEU2RA==/109951165983886039.jpg',
+          tns: [],
+          pic_str: '109951165983886039',
+          pic: 109951165983886030
+        },
+        dt: 183693,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 7347766,
+          vd: -35570,
+          sr: 44100
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 4408677,
+          vd: -33056,
+          sr: 44100
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 2939133,
+          vd: -31519,
+          sr: 44100
+        },
+        sq: null,
+        hr: null,
+        a: null,
+        cd: '1',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 1,
+        s_id: 0,
+        mark: 270336,
+        originCoverType: 1,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 47,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        rtype: 0,
+        rurl: null,
+        mst: 9,
+        cp: 7001,
+        mv: 5756048,
+        publishTime: 1512057600000
+      },
+      {
+        name: '消逝的光芒',
+        id: 1922882557,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 50040107,
+            name: '你还在失望吧',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 60,
+        st: 0,
+        rt: '',
+        fee: 0,
+        v: 5,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 138597273,
+          name: '心之所向',
+          picUrl:
+            'https://p2.music.126.net/7XiJq32IPOT4PJrEDeYNxQ==/109951166912155812.jpg',
+          tns: [],
+          pic_str: '109951166912155812',
+          pic: 109951166912155800
+        },
+        dt: 109392,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 4376685,
+          vd: -11362,
+          sr: 48000
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 2626029,
+          vd: -8750,
+          sr: 48000
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 1750701,
+          vd: -7128,
+          sr: 48000
+        },
+        sq: null,
+        hr: null,
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 128,
+        originCoverType: 2,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 5,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        mst: 9,
+        cp: 0,
+        mv: 0,
+        rtype: 0,
+        rurl: null,
+        publishTime: 0
+      },
+      {
+        name: '你的轮廓',
+        id: 1813864802,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 35187624,
+            name: '叶琼琳',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: ['我穿过所有浪漫银河'],
+        pop: 100,
+        st: 0,
+        rt: '',
+        fee: 8,
+        v: 13,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 121957769,
+          name: '你的轮廓',
+          picUrl:
+            'https://p2.music.126.net/-u92GsfIvtgTXCRapqQZeQ==/109951165647093663.jpg',
+          tns: [],
+          pic_str: '109951165647093663',
+          pic: 109951165647093660
+        },
+        dt: 237225,
+        h: {
+          br: 320000,
+          fid: 0,
+          size: 9491897,
+          vd: -29953,
+          sr: 44100
+        },
+        m: {
+          br: 192000,
+          fid: 0,
+          size: 5695155,
+          vd: -27344,
+          sr: 44100
+        },
+        l: {
+          br: 128000,
+          fid: 0,
+          size: 3796785,
+          vd: -25680,
+          sr: 44100
+        },
+        sq: {
+          br: 803584,
+          fid: 0,
+          size: 23828864,
+          vd: -29912,
+          sr: 44100
+        },
+        hr: null,
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 8192,
+        originCoverType: 1,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 13,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        rtype: 0,
+        rurl: null,
+        mst: 9,
+        cp: 2708406,
+        mv: 0,
+        publishTime: 0
+      },
+      {
+        name: '想你',
+        id: 1949052976,
+        pst: 0,
+        t: 0,
+        ar: [
+          {
+            id: 1198123,
+            name: '姜云升',
+            tns: [],
+            alias: []
+          },
+          {
+            id: 12898527,
+            name: '顾帅Gs',
+            tns: [],
+            alias: []
+          }
+        ],
+        alia: [],
+        pop: 100,
+        st: 0,
+        rt: '',
+        fee: 8,
+        v: 3,
+        crbt: null,
+        cf: '',
+        al: {
+          id: 145261868,
+          name: '想你',
+          picUrl:
+            'https://p1.music.126.net/L594fkj1w0mcymRSgfG5yQ==/109951167448936482.jpg',
+          tns: [],
+          pic_str: '109951167448936482',
+          pic: 109951167448936480
+        },
+        dt: 205081,
+        h: {
+          br: 320002,
+          fid: 0,
+          size: 8206125,
+          vd: -49909,
+          sr: 48000
+        },
+        m: {
+          br: 192002,
+          fid: 0,
+          size: 4923693,
+          vd: -47288,
+          sr: 48000
+        },
+        l: {
+          br: 128002,
+          fid: 0,
+          size: 3282477,
+          vd: -45606,
+          sr: 48000
+        },
+        sq: {
+          br: 831489,
+          fid: 0,
+          size: 21315325,
+          vd: -50013,
+          sr: 48000
+        },
+        hr: {
+          br: 1592548,
+          fid: 0,
+          size: 40825183,
+          vd: -49906,
+          sr: 48000
+        },
+        a: null,
+        cd: '01',
+        no: 1,
+        rtUrl: null,
+        ftype: 0,
+        rtUrls: [],
+        djId: 0,
+        copyright: 0,
+        s_id: 0,
+        mark: 536879104,
+        originCoverType: 1,
+        originSongSimpleData: null,
+        tagPicList: null,
+        resourceState: true,
+        version: 3,
+        songJumpInfo: null,
+        entertainmentTags: null,
+        single: 0,
+        noCopyrightRcmd: null,
+        rtype: 0,
+        rurl: null,
+        mst: 9,
+        cp: 0,
+        mv: 0,
+        publishTime: 1653062400000
+      }
+    ],
     //当前播放的歌曲信息
     currentMusicId: {
-      name: '',
-      0: [{ name: '' }],
+      name: '温暖阳光洒落在你的窗前',
+      id: 1484537845,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 34637050,
+          name: 'Colo',
+          tns: [],
+          alias: []
+        }
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: '',
+      fee: 8,
+      v: 31,
+      crbt: null,
+      cf: '',
       al: {
+        id: 96342883,
+        name: 'Sunny',
         picUrl:
-          'https://p1.music.126.net/GQkPC35zjYvJj5Q_KWs21Q==/109951165685006345.jpg'
-      }
+          'https://p2.music.126.net/oPoqXeUmCm65zml1r55KBA==/109951165364992849.jpg',
+        tns: [],
+        pic_str: '109951165364992849',
+        pic: 109951165364992850
+      },
+      dt: 197394,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 7897965,
+        vd: -8648,
+        sr: 48000
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 4738797,
+        vd: -6005,
+        sr: 48000
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 3159213,
+        vd: -4230,
+        sr: 48000
+      },
+      sq: {
+        br: 1460178,
+        fid: 0,
+        size: 36028884,
+        vd: -8649,
+        sr: 48000
+      },
+      hr: null,
+      a: null,
+      cd: '01',
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 0,
+      s_id: 0,
+      mark: 131136,
+      originCoverType: 0,
+      originSongSimpleData: null,
+      tagPicList: null,
+      resourceState: true,
+      version: 31,
+      songJumpInfo: null,
+      entertainmentTags: null,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 0,
+      mv: 0,
+      publishTime: 0
     },
     //歌单的 收藏者
     Collectors: [],
@@ -54,11 +747,30 @@ const pageMusic: Module<MusicType, IDtype> = {
     //当前歌曲的播放进度---
     musicCurrent: 0,
     // 双击的index
-    doubleIndex: -1,
-    Lyreic: [] //歌词
+    doubleIndex: 0,
+    // 播放顺序0顺序 1单曲 2 随机
+    sequence: 0,
+    Lyreic: [], //歌词
+    // 播放状态
+    showPlay: false,
+    // 播放到那个歌词的index
+    lyreicIndex: 0,
+    currentLyreic: ''
   },
   getters: {},
   mutations: {
+    changecurrentlyc(state, ly) {
+      state.currentLyreic = ly
+    },
+    changeLyreicIndex(state, index) {
+      state.lyreicIndex = index
+    },
+    changeShowPlay(state, show) {
+      state.showPlay = show
+    },
+    changeSequenceAction(state, tag) {
+      state.sequence = tag
+    },
     addmusicplaylist(state, list: any) {
       state.playlist = list
     },
@@ -172,7 +884,7 @@ const pageMusic: Module<MusicType, IDtype> = {
       const playermesage = musicMessageTime(songs)
       // 歌曲列表
       commit('addmp3s', playermesage)
-      const { id, name, ar, al, index, tns, alia, mv } = playermesage[0]
+      const { id, name, ar, al, index, tns, alia, mv, dt } = playermesage[0]
       // 获取当前播放的歌单列表
       const musicurl = await getMusicUrl(id)
       const getLyricss = await getLyrics(id)
@@ -187,68 +899,115 @@ const pageMusic: Module<MusicType, IDtype> = {
         Lyreic,
         tns: tns,
         alia: alia,
-        mv: mv
+        mv: mv,
+        dt: dt
       })
       commit('addDoubleIndex', index)
     },
     //双击之后 获取播放信息
     async PlayMessage({ commit, state }, pages: any) {
-      const { event, listdates } = pages
-      console.log(event, '双击后的数据')
-      console.log(pages, '双击后的数据')
-      commit('addmp3s', listdates)
-      const { id, name, ar, al, index, tns, alia, mv } = event
-      console.log(id, 'id')
-      // 获取当前播放的歌单列表
-      console.log(name, '双击的name')
+      console.log(pages, 'sahungji')
+      commit('addcurrentPlayMessage', pages)
+      commit('changeShowPlay', true)
+      // const { event, listdates } = pages
+      // console.log(event, '双击后的数据')
+      // console.log(pages, '双击后的数据')
+      // commit('addmp3s', listdates)
+      // const { id, name, ar, al, index, tns, alia, mv } = event
+      // console.log(id, 'id')
+      // // 获取当前播放的歌单列表
+      // console.log(name, '双击的name')
 
-      const musicurl = await getMusicUrl(id)
-      const getLyricss = await getLyrics(id)
-      console.log(getLyricss, 'getLyricsgetLyricsgetLyrics')
-      const Lyreic = dataLyric(getLyricss.lrc)
-      commit('addLyreic', Lyreic)
-      // 当前播放的歌曲
-      commit('addcurrentPlayMessage', {
-        text: name,
-        ar: ar,
-        al: al,
-        ...musicurl.data[0],
-        Lyreic,
-        tns: tns,
-        alia: alia,
-        mv: mv
-      })
-      commit('addDoubleIndex', index)
-      console.log(state.doubleIndex)
+      // const musicurl = await getMusicUrl(id)
+      // const getLyricss = await getLyrics(id)
+      // console.log(getLyricss, 'getLyricsgetLyricsgetLyrics')
+      // const Lyreic = dataLyric(getLyricss.lrc)
+      // commit('addLyreic', Lyreic)
+      // // 当前播放的歌曲
+      // commit('addcurrentPlayMessage', {
+      //   text: name,
+      //   ar: ar,
+      //   al: al,
+      //   ...musicurl.data[0],
+      //   Lyreic,
+      //   tns: tns,
+      //   alia: alia,
+      //   mv: mv
+      // })
+      // commit('addDoubleIndex', index)
+      // console.log(state.doubleIndex)
     },
-    // 播放上一首歌曲
-    async leftBtn({ commit, state }) {
-      commit('addDoubleIndexaddjian')
-      console.log(state.mp3s[state.doubleIndex])
-      if (state.doubleIndex == -1) {
-        commit('addDoubleIndex', (state.mp3s.length - 1) * 1)
+    // 改变播放状态
+    changePlayStateAction({ commit }, state: boolean) {
+      commit('changeShowPlay', state)
+    },
+    // 播放顺序 0顺序 1单曲 2 随机
+    changeSequence({ commit, state }) {
+      const a = state.sequence + 1
+      if (a > 2) {
+        commit('changeSequenceAction', 0)
+        return
       }
-      const { id, name, ar, al, index, tns, alia, mv } =
-        state.mp3s[state.doubleIndex]
-      console.log(id, 'id')
-      // 获取当前播放的歌单列表
-      const musicurl = await getMusicUrl(id)
-      const getLyricss = await getLyrics(id)
-      console.log(getLyricss, 'getLyricsgetLyricsgetLyrics')
-      const Lyreic = dataLyric(getLyricss.lrc)
-      commit('addLyreic', Lyreic)
-      // 当前播放的歌曲
-      commit('addcurrentPlayMessage', {
-        text: name,
-        ar: ar,
-        al: al,
-        ...musicurl.data[0],
-        Lyreic,
-        tns: tns,
-        alia: alia,
-        mv: mv
-      })
-      commit('addDoubleIndex', index)
+      commit('changeSequenceAction', a)
+    },
+    // 切歌 判断 播放顺序 0顺序 1单曲 2 随机
+    async lastNext({ commit, state }, index: any) {
+      // 获取播放列表
+      const sequence = state.sequence
+      let currentIndex = state.doubleIndex
+      const playlist = state.mp3s
+      console.log(playlist)
+      console.log(currentIndex, 'currentindex')
+      console.log(sequence, 'sequence')
+      switch (sequence) {
+        case 2:
+          // commit('addcurrentPlayMessage')
+          break
+        default:
+          currentIndex += index
+          console.log((currentIndex += index), '相加')
+          if (currentIndex > playlist.length - 1) currentIndex = 0
+          if (currentIndex < 0) currentIndex = playlist.length - 1
+          commit('addcurrentPlayMessage', playlist[currentIndex])
+          console.log(playlist[currentIndex], '当前歌曲')
+          commit('addDoubleIndex', currentIndex)
+          commit('changeShowPlay', true)
+      }
+      console.log(index)
+      // commit('addDoubleIndexaddjian')
+      // console.log(state.mp3s[state.doubleIndex])
+      // if (state.doubleIndex == -1) {
+      //   commit('addDoubleIndex', (state.mp3s.length - 1) * 1)
+      // }
+      // const { id, name, ar, al, index, tns, alia, mv } =
+      //   state.mp3s[state.doubleIndex]
+      // console.log(id, 'id')
+      // // 获取当前播放的歌单列表
+      // const musicurl = await getMusicUrl(id)
+      // const getLyricss = await getLyrics(id)
+      // console.log(getLyricss, 'getLyricsgetLyricsgetLyrics')
+      // const Lyreic = dataLyric(getLyricss.lrc)
+      // commit('addLyreic', Lyreic)
+      // // 当前播放的歌曲
+      // commit('addcurrentPlayMessage', {
+      //   text: name,
+      //   ar: ar,
+      //   al: al,
+      //   ...musicurl.data[0],
+      //   Lyreic,
+      //   tns: tns,
+      //   alia: alia,
+      //   mv: mv
+      // })
+      // commit('addDoubleIndex', index)
+    },
+    // 歌词的index
+    changelyIndexAction({ commit }, index: number) {
+      commit('changeLyreicIndex', index)
+    },
+    // 当前歌词
+    changeCurrentLy({ commit }, ly: string) {
+      commit('changecurrentlyc', ly)
     },
     // 播放下一首歌曲
     async rightBtn({ commit, state }) {
@@ -383,7 +1142,9 @@ const pageMusic: Module<MusicType, IDtype> = {
     },
     // 所有专辑点击播放全部图标/点击热门50首展开
     albumcurrentmusic({ commit }, list: any[]) {
+      console.log(list, 'action')
       commit('addmp3s', list)
+      commit('changeShowPlay', true)
     }
     //
   }

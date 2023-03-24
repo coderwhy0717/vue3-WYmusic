@@ -81,7 +81,7 @@ export default defineComponent({
   height: 40/1920 * 100vw;
   width: 100%;
   position: relative;
-  margin-bottom: 40/1920 * 100vw;
+  margin-bottom: 10/1920 * 100vw;
 }
 
 .navBar {
@@ -94,7 +94,7 @@ export default defineComponent({
   width: 100%;
   color: rgb(49, 49, 49);
   align-items: center;
-  padding: 10/1920 * 100vw 0 20/1920 * 100vw 20/1920 * 100vw;
+  padding: 0 0 10/1920 * 100vw 20/1920 * 100vw;
 }
 
 .barItem {

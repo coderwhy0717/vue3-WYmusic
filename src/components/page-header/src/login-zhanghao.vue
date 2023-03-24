@@ -30,6 +30,9 @@ export default defineComponent({
     const store = useStore()
 
     const accout = reactive({
+      // phone: localCache.getCache('phone') ?? '',
+      // password: localCache.getCache('password') ?? ''
+
       phone: localCache.getCache('phone') ?? '',
       password: localCache.getCache('password') ?? ''
     })

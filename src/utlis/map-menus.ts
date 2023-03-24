@@ -94,3 +94,55 @@ export function userevent(events: any[]) {
 //     // traIds.splice(0,20)
 //   }
 // }
+
+export function dobunce(fn: any, delay: number, lik = true) {
+  let items: any
+  let liks = true
+  function _dobunce() {
+    if (items) clearTimeout(items)
+    if (lik && liks) {
+      fn()
+      liks = false
+      return
+    } else {
+      items = setTimeout(() => {
+        fn()
+        liks = false
+      }, delay)
+    }
+  }
+
+  return _dobunce
+}
+export function throller(
+  fn: any,
+  delay: number,
+  play = { loding: true, ding: false }
+) {
+  const { loding, ding } = play
+  let b = 0
+  let items: any
+  function _throller() {
+    const a = new Date().getTime()
+    if (!loding && !b) b = a
+    const time = delay - (a - b)
+    if (time <= 0) {
+      if (items) {
+        clearTimeout(items)
+        items = null
+      }
+      fn()
+      b = a
+      return
+    }
+    if (ding && !items) {
+      items = setTimeout(() => {
+        fn()
+        items = null
+        b = ding ? new Date().getTime() : 0
+      }, time)
+    }
+  }
+
+  return _throller
+}

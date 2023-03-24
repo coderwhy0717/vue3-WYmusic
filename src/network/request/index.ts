@@ -2,7 +2,7 @@ import axios from 'axios'
 import { AxiosInstance } from 'axios'
 import { ElLoading } from 'element-plus'
 import { JHRequestInterceptors, JHRequestConfig } from './type'
-import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'
+import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 import {
   commentlike,
   commentReply,
@@ -36,7 +36,7 @@ const url = [
 class WJHRequest {
   instance: AxiosInstance
   interceptorss?: JHRequestInterceptors
-  isloading?: ILoadingInstance
+  isloading?: LoadingInstance
   showloading: boolean
   withCredentials: boolean
   constructor(config: JHRequestConfig) {

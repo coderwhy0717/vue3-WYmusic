@@ -22,23 +22,30 @@
 
           <div class="left-text">
             <div class="left-text-a">
-              {{ musicMessage.text ?? musicMessage.name }}
-              <i v-if="musicMessage.alia">
-                <template v-for="item in musicMessage.alia" :key="item">
-                  <i class="left-text-ccc">{{ item }}</i>
-                </template>
-              </i>
+              <div
+                class="left-text-aaa"
+                @mouseover="mouseoverchang"
+                ref="lefttext"
+              >
+                <div class="left-text-3">
+                  {{ musicMessage.text ?? musicMessage.name }}
+                </div>
+              </div>
             </div>
-            <template v-for="item in musicMessage.ar" :key="item.id">
-              <i>{{ item.name }}</i
-              >/
-            </template>
+            <div v-if="musicMessage.alia" class="left-text-cc1">
+              <template v-for="item in musicMessage.alia" :key="item">
+                <i class="left-text-ccc">{{ item }}</i>
+              </template>
+              <template v-for="item in musicMessage.ar" :key="item.id">
+                <i>{{ item.name }}</i
+                >/
+              </template>
+            </div>
           </div>
         </div>
         <!--  -->
         <div class="music-left" v-else @click="isshows = !isshows">
           <arrow-down-bold style="width: 1.5em" />
-
           <i class=""><share style="width: 1.5em" /></i>
           <div class="left-text">
             <!-- 点击之后显示的 -->
@@ -48,34 +55,61 @@
         </div>
         <!--  -->
       </transition>
-
-      <div class="music-center">
-        <div class="music-center-top">
+      <!-- :class="isshowbof ? 'el-icon-video-pause' : 'el-icon-caret-right'" -->
+      <!-- <div class="music-center-top">
           <caret-left class="play" @click="leftBtn" />
 
           <video-play class="play" v-if="showPlay" @click="changeState(true)" />
           <video-pause class="play" v-else @click="changeState(false)" />
 
-          <!-- :class="isshowbof ? 'el-icon-video-pause' : 'el-icon-caret-right'" -->
 
           <caret-right class="play" @click="rightBtn" />
 
           <span>词</span>
+        </div> -->
+      <!-- @play="changeState(true)" -->
+      <!-- @pause="changeState(false)" -->
+      <div class="music-center">
+        <div class="playMusic">
+          <div
+            class="along iconfont"
+            :class="sequence"
+            @click="cahngeAlong()"
+          ></div>
+          <div
+            class="last iconfont icon-shangyishou"
+            @click="lastNext(-1)"
+          ></div>
+          <div
+            class="iconfont"
+            :class="isShowPlay ? 'pause icon-pause-full' : 'play icon-bofang'"
+            @click="changeref"
+          ></div>
+          <div class="next iconfont icon-xiayishou" @click="lastNext(1)"></div>
+          <div class="lyric" @click="openCenter()">词</div>
         </div>
-        <!-- @play="changeState(true)" -->
-        <!-- @pause="changeState(false)" -->
-        <div class="music-center-bm">
-          <audio
-            :src="musicMessage.url"
-            controls
-            autoplay
-            :loop="false"
-            @ended="audioFinished"
-            class="audioss"
-            @timeupdate="timeupdate"
-            ref="myRef"
-          ></audio>
+        <div class="slider">
+          <div>{{ formatUtcString(songPlayTime, 'mm:ss') }}</div>
+          <el-slider
+            size="small"
+            :model-value="Progress"
+            :max="100"
+            :min="0"
+            :step="0.1"
+            @change="change"
+            @input="changeinput"
+          />
+          <div>{{ formatUtcString(musicMessage.dt, 'mm:ss') }}</div>
         </div>
+        <audio
+          autoplay
+          :src="getSongUrl(musicMessage.id)"
+          :loop="false"
+          @ended="audioFinished"
+          class="audioss"
+          @timeupdate="timeupdate"
+          ref="myRef"
+        ></audio>
       </div>
 
       <div class="music-right">
@@ -88,6 +122,9 @@
           >
           </el-option>
         </el-select> -->
+        <!-- 歌词 -->
+        <div>{{ currentLy }}</div>
+
         <expand class="carets" @click="drawer = !drawer" />
       </div>
     </div>
@@ -132,13 +169,22 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  onMounted,
+  watchEffect,
+  onUpdated,
+  onBeforeUpdate
+} from 'vue'
 import { useStore } from '@/store'
 import basMainUiPlus from '@/basse-ui/bas-main-ui-plus'
 import { configMusicRight } from './config/music-right'
 import basMainMessage from '@/basse-ui/bas-main-message'
-import { musicMessageTime } from '@/utlis/map-menus'
-
+import { musicMessageTime, throller } from '@/utlis/map-menus'
+import { formatUtcString } from '@/utlis/data-formatTime'
+import { ElMessage } from 'element-plus'
 export default defineComponent({
   components: {
     basMainUiPlus,
@@ -146,23 +192,105 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
-
+    const myRef = ref<InstanceType<typeof Audio>>()
+    // 获取组件audio信息
+    const getSongUrl = (id: number) => {
+      return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+    }
+    const isShowPlay = computed(() => store.state.pageMusic.showPlay)
+    const songPlayTime = ref(0)
+    const Progress = ref(0)
+    const isShowPLayProgress = ref(true)
+    const isShowLyreic = ref(false)
     // 拿到播放当前歌曲 信息
-    const musicMessage = computed(() => {
-      const message = ref(store.state.pageMusic.currentMusicId)
-      return message.value
+    const musicMessage = computed(() => store.state.pageMusic.currentMusicId)
+    const currentLy = computed(() => store.state.pageMusic.currentLyreic)
+    onMounted(() => {
+      console.log(myRef)
+
+      myRef.value!.src = getSongUrl(musicMessage.value.id)
+      myRef
+        .value!.play()
+        .then(() => {
+          store.dispatch('pageMusic/changePlayStateAction', true)
+        })
+        .catch(() => {
+          store.dispatch('pageMusic/changePlayStateAction', false)
+        })
     })
+    const changeref = () => {
+      console.log(isShowPlay.value)
+      isShowPlay.value ? myRef.value!.pause() : myRef.value!.play()
+      store.dispatch('pageMusic/changePlayStateAction', !isShowPlay.value)
+    }
+    // 当前歌曲播放进度
+    const timeupdate = (e: any) => {
+      // if (!isShowPlay.value) {
+      //   const showPlayis = computed(() => store.state.pageMusic.showPlay)
+      //   isShowPlay.value = showPlayis.value
+      // }
+      const currentTime = e.target.currentTime * 1000
+
+      if (isShowPLayProgress.value) {
+        songPlayTime.value = currentTime
+        Progress.value = (currentTime / musicMessage.value.dt) * 100
+        // console.log(parseFloat(e.target.currentTime), '播放进度')
+      }
+      if (isShowLyreic.value) {
+        const songly = computed(() => store.state.pageMusic.Lyreic)
+        const lyIndex = computed(() => store.state.pageMusic.lyreicIndex)
+        let index = 0
+        for (let i = 0; i < songly.value.length; i++) {
+          if (currentTime < songly.value[i].duration * 1000) {
+            index = i - 1
+            break
+          }
+        }
+        const ly = songly.value[index]?.lyricStr
+        console.log(index)
+        if (index !== lyIndex.value) {
+          console.log(ly, lyIndex.value)
+          store.dispatch('pageMusic/changelyIndexAction', index)
+          store.dispatch('pageMusic/changeCurrentLy', ly)
+        }
+      }
+      store.dispatch(
+        'pageMusic/setcurrentTime',
+        parseFloat(e.target.currentTime.toFixed(1))
+      )
+    }
+    // 点击滑块两个事件
+    // 滑动鼠标松开
+    const change = (val: any) => {
+      // isShowPLayProgress.value = false
+      myRef.value!.currentTime = ((val / 1000) * musicMessage.value.dt) / 100
+      isShowPLayProgress.value = true
+      if (!isShowPlay.value) {
+        changeref()
+      }
+      console.log(val, '值改变时')
+    }
+    // 滑动
+    const changeinput = (val: any) => {
+      isShowPLayProgress.value = false
+      Progress.value = val
+      songPlayTime.value = (val * musicMessage.value.dt) / 100
+      change(val)
+    }
+
+    // -------------------------------
     console.log(store.state.pageMusic.currentMusicId, '当前播放信息')
     console.log(musicMessage.value.id, '当前播放信息')
     let showPlay: any = ref(musicMessage.value.url ? false : true)
-
-    const audioFinished = (event: any) => {
-      console.log(event, '播放结束')
-      // vuex里获取双击的index
-      const a = store.state.pageMusic.doubleIndex
-      console.log(store.state.pageMusic.doubleIndex, '播放结束获取的index')
-      // 传入index 去播放下一首
-      store.dispatch('pageMusic/setIndex', store.state.pageMusic.doubleIndex)
+    // 播放结束
+    const sequenceIndex = computed(() => store.state.pageMusic.sequence)
+    const audioFinished = () => {
+      if (sequenceIndex.value === 1) {
+        myRef.value!.currentTime = 0
+        myRef.value!.play()
+      } else {
+        lastNext(1)
+      }
     }
     const customColor = '#409eff'
     const customColors = [
@@ -211,42 +339,36 @@ export default defineComponent({
     const displayArea = computed(() => {
       return `${document.documentElement.clientWidth / 2.5}px`
     })
-    // 当前歌曲播放进度
-    const timeupdate = (e: any) => {
-      // console.log(parseFloat(e.target.currentTime.toFixed(1)), '播放进度')
-      store.dispatch(
-        'pageMusic/setcurrentTime',
-        parseFloat(e.target.currentTime.toFixed(1))
-      )
-    }
+
+    const lefttext = ref()
+    let i = 0
     // 子组件点击事件
     const TriggerShows = () => {
       isshows.value = !isshows.value
     }
-    // 播放上一首歌曲
-    const leftBtn = () => {
-      console.log('播放上一首')
-      store.dispatch('pageMusic/leftBtn')
+    // 获取播放顺序
+    const sequence = computed(() => {
+      const seq = store.state.pageMusic.sequence
+      switch (seq) {
+        case 1:
+          return 'icon-danquxunhuan'
+        case 2:
+          return 'icon-suijibofang'
+        default:
+          return 'icon-bofang-xunhuanbofang'
+      }
+    })
+    //  歌曲是否0循环 1单曲 2随机
+    const cahngeAlong = () => {
+      store.dispatch('pageMusic/changeSequence')
     }
-    // 播放下一首歌曲
-    const rightBtn = () => {
-      console.log('下一首')
-      store.dispatch('pageMusic/rightBtn')
+
+    //播放上一首歌曲 / 下一首歌曲
+    const lastNext = (tag: any) => {
+      store.dispatch('pageMusic/lastNext', tag)
     }
     // 播放 、暂停播放
 
-    // 获取组件audio信息
-    const myRef = ref<InstanceType<typeof Audio>>()
-    const changeState = (bool: boolean) => {
-      // console.log('播放暂停', myRef.value?.play())
-      if (!musicMessage.value.url) return
-      if (bool) {
-        myRef.value?.play()
-      } else {
-        myRef.value?.pause()
-      }
-      showPlay.value = !showPlay.value
-    }
     // 点击显示、影藏
     const isshowsbtn = () => {
       isshows.value = !isshows.value
@@ -259,12 +381,62 @@ export default defineComponent({
         offset: 0
       })
     }
+    let foo = (showif = true) => {
+      i--
+      console.log(showif, 'show')
+      const box_obj = lefttext.value
+      let distance =
+        box_obj.width ||
+        box_obj.clientWidth ||
+        box_obj.offsetWidth ||
+        box_obj.scrollWidth
+      console.log(distance, 'distance')
+      if (i <= -distance) {
+        i = 2 * distance
+        console.log(i, 'i')
+        box_obj.style.right = -distance + 'px'
+      } else if (i >= distance) {
+        let now_left = i - distance
+        console.log(now_left, 'now_left')
+        console.log(i, 'now_left i')
+        console.log(distance, 'now_left distance')
+        box_obj.style.left = now_left + 'px'
+      } else {
+        console.log(i, 'iii')
+        if (i == distance - 1) {
+          box_obj.style.left = 0 + 'px'
+          i = 0
+          return
+        }
+        box_obj.style.left = i + 'px'
+      }
+      if (showif) {
+        setTimeout(foo, 30)
+      }
+    }
+
+    // 鼠标经过text事件
+    const mouseoverchang = throller(foo, 5000)
+    const openCenter = () => {
+      isShowLyreic.value = !isShowLyreic.value
+    }
     return {
+      currentLy,
+      openCenter,
+      getSongUrl,
+      sequence,
+      cahngeAlong,
+      change,
+      changeinput,
+      Progress,
+      isShowPlay,
+      songPlayTime,
+      lefttext,
+      mouseoverchang,
+      changeref,
       isshowsbtn,
       showPlay,
-      changeState,
-      leftBtn,
-      rightBtn,
+      lastNext,
       TriggerShows,
       drawer,
       isshows,
@@ -278,7 +450,8 @@ export default defineComponent({
       displayArea,
       musicMessage,
       timeupdate,
-      myRef
+      myRef,
+      formatUtcString
     }
   }
 })
@@ -318,66 +491,128 @@ export default defineComponent({
   align-items: center;
   padding: 10/1920 * 100vw 20/1920 * 100vw 0 20/1920 * 100vw;
   .music-left {
-    align-items: center !important;
     display: flex;
-    align-items: center;
     cursor: pointer;
+    width: 25%;
+    // background-color: red;
     img {
       border-radius: 5%;
       width: 70/1920 * 100vw;
       height: 70/1920 * 100vw;
     }
-
     .left-text {
+      position: relative;
       padding-left: 10/1920 * 100vw;
       font-size: 15/1920 * 100vw;
       font-weight: 300;
+      width: 210/1920 * 100vw;
+      overflow: hidden;
       .left-text-a {
+        position: relative;
+        top: 0;
+        left: 0;
         font-size: 20/1920 * 100vw;
+        .left-text-aaa {
+          position: relative;
+          left: 0;
+          top: 0;
+          width: 210/1920 * 100vw;
+          background-color: red;
+          .left-text-3 {
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #222;
+            // background-color: green;
+          }
+          .left-text-3:hover {
+            color: #000;
+          }
+        }
+      }
+      .left-text-cc1 {
+        position: absolute;
+        bottom: 10px;
         .left-text-ccc {
           color: #999;
         }
       }
     }
   }
+
   .music-center {
-    .music-center-top {
-      margin-left: -100/1920 * 100vw;
+    flex: 1;
+    .playMusic {
       display: flex;
-      justify-content: space-evenly;
       align-items: center;
-      padding-top: 20/1920 * 100vw;
-      .play {
-        font-size: 28/1920 * 100vw;
-        width: 20/1920 * 100vw;
-        height: 20/1920 * 100vw;
-        line-height: 20/1920 * 100vw;
+      justify-content: space-between;
+      margin: 0 auto;
+      width: 500/1920 * 100vw;
+      div {
+        text-align: center;
+        font-size: 25px;
+        cursor: pointer;
+      }
+      .along {
+        width: 100/1920 * 100vw;
         text-align: center;
       }
-      .play:hover {
-        color: red !important;
-        cursor: pointer;
+      .lyric {
+        width: 100/1920 * 100vw;
+        text-align: center;
       }
-      span:hover {
-        cursor: pointer;
-        color: red !important;
+      .last {
+        width: 28px;
+        height: 28px;
+      }
+      .last:hover {
+        background-color: rgb(236, 235, 235);
+        border-radius: 5px;
+      }
+      .pause {
+        width: 32px;
+        height: 32px;
+        line-height: 30px;
+      }
+      .pause:hover {
+        background-color: rgb(236, 235, 235);
+        border-radius: 5px;
+      }
+      .play {
+        width: 32px;
+        height: 32px;
+        line-height: 30px;
+      }
+      .play:hover {
+        background-color: rgb(236, 235, 235);
+        border-radius: 5px;
+      }
+      .next {
+        width: 28px;
+        height: 28px;
+      }
+      .next:hover {
+        background-color: rgb(236, 235, 235);
+        border-radius: 5px;
       }
     }
-    .music-center-bm {
+    .slider {
+      width: 700/1920 * 100vw;
       display: flex;
       align-items: center;
-      height: 50/1920 * 100vw;
-      font-size: 10/1920 * 100vw;
-      font-weight: 200;
-      .elpar {
-        margin-left: 10/1920 * 100vw;
-      }
-      .elpar-time {
-        font-size: 10/1920 * 100vw;
+      margin: 0 auto;
+      div {
+        font-size: 13px;
+        margin: 0 10px;
+        color: #8b8b8d;
       }
     }
   }
+
   .music-right {
+    // background-color: red;
+    display: flex;
+    width: 25%;
     .carets {
       margin-left: 10/1920 * 100vw;
       width: 40/1920 * 100vw;
@@ -386,6 +621,20 @@ export default defineComponent({
 }
 </style>
 <style lang="less">
+// 滑块
+.el-slider {
+  width: 600/1920 * 100vw;
+  --el-slider-button-size: 15px;
+
+  .el-slider__runway {
+    background-color: #c9c9c9;
+  }
+  .el-slider__runway {
+    --el-slider-main-bg-color: #e20931;
+    --el-slider-runway-bg-color: #c20c2c;
+  }
+}
+
 .el-icon-s-grid {
   margin: 0 20/1920 * 100vw;
   font-size: 30/1920 * 100vw;

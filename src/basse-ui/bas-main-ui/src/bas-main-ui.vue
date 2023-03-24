@@ -83,10 +83,7 @@ export default defineComponent({
     const rowblclick = (event: any) => {
       console.log(event, '点击了')
       console.log(listdates.value, '点击了')
-      store.dispatch('pageMusic/PlayMessage', {
-        event,
-        listdates: listdates.value
-      })
+      store.dispatch('pageMusic/PlayMessage', event)
     }
     // 点击喜欢
     const like = ref()
